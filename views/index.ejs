@@ -1,0 +1,93 @@
+<!-- https://zellwk.com/blog/crud-express-mongodb/ -->
+
+<html>
+
+<head>
+    <title> My Express App</title>
+    
+    </head>
+    
+<body>
+    
+    
+    
+                    <!--  ADD PRODUCT -->
+    <h1> Add Product </h1>
+    
+    <% if(errors != undefined) { %>
+        <ul>
+        <% errors.forEach( function(error) { %>
+            <li>  <%= error.msg %> </li>
+
+         <% }) %>
+       </ul>
+    <% } %>
+    
+    <form method="POST" action= "/api/products/add">
+    
+        <label> Product name</label> <br>
+        <input type="text" name="productName">
+        <br>
+        
+        <label> Price</label><br>
+        <input type = "text" name="price">
+        <br>
+        <input type="submit" value="Submit">
+    
+    </form>
+    
+                    <!-- UPDATE THE PRODUCT -->
+    <h1> Update Product </h1>
+    <form method="POST" action="/api/products/update">
+        <label> Product id</label> <br>
+        <input type="text" name="id">
+        <br>
+        
+        <label> Product name</label> <br>
+        <input type="text" name="productName">
+        <br>
+        
+        <label> Price </label><br>
+        <input type = "text" name="price">
+        <br>
+      <button type="submit">UPDATE</button><br>
+        <%= updateMessage %>
+    </form> 
+    
+    
+    
+                        <!-- DELETE -->
+    
+    <h1> Delete Product </h1>
+    <form method="POST" action="/api/products/delete">
+        <label> Product id</label> <br>
+        <input type="text" name="id">
+        <br>
+      <button type="submit">Delete</button><br>
+        <%= deleteMessage %>
+    </form>
+    
+    
+    
+                        <!-- LIST THE PRODUCTS -->
+    
+    <h1>   <%= title %></h1> 
+    <input type="button" value="List the products" onClick="window.location.reload()">
+    <ul>
+
+         <% products.forEach( function(product) { %>
+            <li> 
+             <%= product.productName %> 
+            price: <%= product.price %> $
+           </li>
+
+         <% }) %>
+    
+    </ul>
+    
+  
+    
+    
+    
+</body>
+</html>
